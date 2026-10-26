@@ -47,7 +47,6 @@
   user-select: none;
   -webkit-user-select: none;
   -webkit-touch-callout: none;
-  touch-action: none;
 }
 
 body, html {
@@ -57,6 +56,7 @@ body, html {
   font-family: var(--font-body);
   background-color: #1a2416;
   color: #2b1f13;
+  touch-action: manipulation;
 }
 
 /* Background Backdrop */
@@ -220,12 +220,14 @@ body, html {
    1. HOME SCREEN
    ============================================================ */
 #screen-home {
-  padding: 52px 16px 14px 16px;
+  padding: 52px 16px 24px 16px;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   text-align: center;
   overflow-y: auto;
-  gap: 6px;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-y;
+  gap: 12px;
 }
 
 .hero-banner {
@@ -459,6 +461,7 @@ body, html {
   width: 100%;
   height: 100%;
   z-index: 5;
+  touch-action: none;
 }
 
 /* HUD Overlay on top of canvas */
@@ -921,6 +924,8 @@ body, html {
   max-width: 420px;
   max-height: 90vh;
   overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-y;
   background: linear-gradient(180deg, #ffffff 0%, #fffde7 100%);
   border: 4px solid #ffffff;
   border-radius: 28px;
@@ -1106,10 +1111,57 @@ input:checked + .slider:before {
 
 /* Mobile & Tablet Responsiveness */
 @media (max-width: 600px) {
+  .game-viewport {
+    max-height: 100vh;
+    border-radius: 0;
+  }
+
   .game-viewport.simulator-frame {
     height: 100%;
     max-height: 100%;
     border: none;
     border-radius: 0;
+    box-shadow: none;
+  }
+
+  #screen-home {
+    padding: 56px 14px 28px 14px;
+    gap: 10px;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    touch-action: pan-y;
+  }
+
+  .logo-art-container {
+    width: 95px;
+    height: 95px;
+    margin-bottom: 4px;
+  }
+
+  .game-title {
+    font-size: 30px;
+  }
+
+  .title-sub {
+    font-size: 12px;
+  }
+
+  .mode-grid {
+    gap: 6px;
+  }
+
+  .mode-card {
+    padding: 8px 6px;
+  }
+
+  .home-actions {
+    margin-top: 4px;
+    padding-bottom: 16px;
+  }
+
+  .modal-content {
+    max-height: 85vh;
+    padding: 18px;
+    touch-action: pan-y;
   }
 }
